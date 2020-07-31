@@ -8,7 +8,7 @@ Written in Python, GUI made with PySimpleGui, compiled by auto-py-to-exe
 
 In the first field type in your account name from PoE site
 In second field type in your current character name (this is for generating message, that ppl could PM you in game)
-In third field type in index of stash with seeds. **Careful! Use index not, name of the STASH!** Count it like on the screenshot below! (From top to bottom, or left to right)
+In third field type in index of stash with seeds. **Careful! Use index, not name of the STASH!** Count it like on the screenshot below! (From top to bottom, or left to right)
 
 ![Screenshot](https://i.imgur.com/PreIV74.png)
 
