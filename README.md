@@ -13,4 +13,10 @@ In third field type in index of stash with seeds. **Careful! Use index, not name
 ![Screenshot](https://i.imgur.com/PreIV74.png)
 
 
+Then click "Get link with data", right after that your browser should open with data. Copy all of it
+At the end click last button and Done!
+
 If you think that the script dont see your seed, please wait up to 1-2 minutes after you moved seed in your stash. If it still didnt listed your seeds, make and issue post on GitHub with pastebin of your copied data and description of problem.
+
+# How to setup your prices of seeds
+Simply edit json file "prices" which should be generated after first run of script. Make sure that you set decimal prices using dots (.) instead comma (,).
