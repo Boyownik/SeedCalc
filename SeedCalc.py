@@ -64,12 +64,12 @@ def list_seeds(tier, seeds, ign):  # List seeds
     #         file.write(f"{i.n} Tier: {i.tier} iLvl: {i.ilvl} Amount: {i.amount}\n")
     # TODO: Make script to find lowest iLvl of seed and mention it in message
     if tier == 1:  # List only T1 seeds
-        file.write(f"```WTS Seeds! All T{tier}! & iLvl78+!\n")
+        file.write(f"```WTS Seeds! All T{tier}! & iLvl76+!\n")
         file.write("All prices are in Chaos! You can pay by Exalts or Chaos!\n")
         file.write("\n")
         for s in seeds:
             if s.tier == tier:
-                file.write(f">{s.n} iLvl: {s.ilvl} Amount: {s.amount}\n")
+                file.write(f">{s.n} Amount: {s.amount} pc/e: {s.pc} pc/all: {math.ceil(s.pc * s.amount)}\n")
 
         file.write(f"\nWild total amount: {wild_total} pc/all: {math.ceil(wildp_total)}\n")
         file.write(f"Vivid total amount: {vivid_total} pc/all: {math.ceil(vividp_total)}\n")
