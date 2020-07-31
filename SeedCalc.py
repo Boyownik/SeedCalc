@@ -102,13 +102,14 @@ def get_data(data_input, ign,  ignore):  # Get the data of stash
     names = ["Wild", "Vivid", "Primal"]
     for item in stash_data["items"]:
         curr_name = str(item["typeLine"])
-        curr_ilvl = int(item["properties"][2]["values"][0][0])
-        curr_tier = int(item["properties"][1]["values"][0][0])
 
         if ignore:
             curr_ilvl = 0
 
         if curr_name.startswith(tuple(names)):
+            curr_ilvl = int(item["properties"][2]["values"][0][0])
+            curr_tier = int(item["properties"][1]["values"][0][0])
+
             ix = check_seed(curr_name, curr_ilvl, seeds)
             if ix is None:
                 price = float(prices["T1"].get(curr_name))
@@ -117,6 +118,10 @@ def get_data(data_input, ign,  ignore):  # Get the data of stash
                 seeds.append(s)
             else:
                 seeds[ix].amount += item["stackSize"]
+
+    if len(seeds) == 0:
+        sg.PopupScrolled("There are no seeds in this stash!", title="Warning")
+        return
 
     list_seeds(1, seeds, ign, ignore)
 
