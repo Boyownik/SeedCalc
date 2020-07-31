@@ -1,11 +1,12 @@
 # Python 3.8.2
 import json
-import PySimpleGUI as sg
-import webbrowser
-import win32clipboard
-import os
 import math
+import os
+import webbrowser
 
+import PySimpleGUI as sg
+import win32clipboard
+from json.decoder import JSONDecodeError
 
 class Seed:  # Defining class for seeds
     amount = 0
@@ -87,9 +88,14 @@ def list_seeds(tier, seeds, ign,  ignore):  # List seeds
 
 
 def get_data(data_input, ign,  ignore):  # Get the data of stash
-    stash_data = json.loads(data_input)
     with open('prices.json') as p:
-        prices = json.load(p)
+        try:
+            stash_data = json.loads(data_input)
+            prices = json.load(p)
+        except JSONDecodeError as e:
+            sg.PopupScrolled(f"Invalid json data! Error: {e}", title="Warning")
+            return
+
     seeds = []
 
     # Iterating through items, looking for seeds
@@ -121,10 +127,33 @@ def get_data(data_input, ign,  ignore):  # Get the data of stash
 nickname = ""
 ign = ""
 tab_index = 0
+PRICES_TEMPLATE = {
+	"T1": {
+		"Wild Hatchling Seed": 0.5,
+		"Wild Ursaling Seed": 0.5,
+		"Wild Hellion Seed": 0.5,
+		"Wild Ape Seed": 0.5,
+		"Wild Thornwolf Seed": 0.5,
+		"Vivid Arachnid Seed": 0.5,
+		"Vivid Thornweaver Seed": 14,
+		"Vivid Leech Seed": 0.5,
+		"Vivid Scorpion Seed": 0.5,
+		"Vivid Weta Seed": 0.5,
+		"Primal Maw Seed": 0.8,
+		"Primal Rhoa Seed": 0.5,
+		"Primal Feasting Horror Seed": 0.5,
+		"Primal Cleaveling Seed": 0.5,
+		"Primal Dustspitter Seed": 0.5
+	}
+}
 
 # Check if file with seed prices exists
 if not os.path.exists("prices.json"):
-    sg.PopupScrolled("Error! Couldn't find file with seed prices!", title="Error")
+    sg.PopupScrolled("Could not find json file with prices, generating default one.", title="Warning")
+
+    with open("prices.json", "w") as wrf:
+        json.dump(PRICES_TEMPLATE, wrf, indent=4)
+
 
 if os.path.exists("settings"):  # Load settings if settings file exists
     f = open("settings", "r")
