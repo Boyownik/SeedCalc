@@ -186,7 +186,7 @@ layout = [
                                                                                                 size=(20, 1))],
             [sg.Text("Type in your IGN (current char's name)"), sg.InputText(k="IGN", default_text=ign,
                                                                              size=(20, 1))],
-            [sg.Text("Type in index of your stash to get data of (1,2,3...)"),
+            [sg.Text("Type in index of your stash to get data of (0,1,2,3...)"),
              sg.InputText(k="INDEX", default_text=tab_index, size=(5, 1))],
             [sg.Button("Save")],
             [sg.Text("Click the button and copy ALL data from there"), sg.Button("Get link with data")],
